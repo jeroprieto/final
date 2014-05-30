@@ -1,56 +1,58 @@
-Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+Final::Application.routes.draw do
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  # Specify a custom home page
+  get "/" => "trip#index"
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  # Resource: Trip
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  # --- Create
+  get "/trip/new" => 'trip#new'
+  post "/trip" => 'trip#create'
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  # --- Read
+  get "/trip" => 'trip#index'
+  get "/trip/:id" => 'trip#show'
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  # -- Update
+  get "/trip/:id/edit" => 'trip#edit'
+  patch "/trip/:id" => 'trip#update'
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+  # --- Delete
+  delete "/trip/:id" => 'trip#destroy'
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
+  
+  # Resource: Location
 
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+  # --- Create
+  get "/location/new" => 'location#new'
+  post "/location" => 'location#create'
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  # --- Read
+  get "/location" => 'location#index'
+  get "/location/:id" => 'location#show'
+
+  # -- Update
+  get "/location/:id/edit" => 'location#edit'
+  patch "/location/:id" => 'location#update'
+
+  # --- Delete
+  delete "/location/:id" => 'location#destroy'
+
+
+  # Resource: Season
+
+  # --- Create
+  get "/month/new" => 'month#new'
+  post "/month" => 'month#create'
+
+  # --- Read
+  get "/month" => 'month#index'
+  get "/month/:id" => 'month#show'
+
+  # -- Update
+  get "/month/:id/edit" => 'month#edit'
+  patch "/month/:id" => 'month#update'
+
+  # --- Delete
+  delete "/month/:id" => 'month#destroy'
 end

@@ -2,13 +2,23 @@
 <html>
 <head>
   <title>Final</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    "http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" %>
+
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+
   <%= csrf_meta_tags %>
+
 </head>
 <body>
-
+<div class="col-md-8 col-md-offset-2">
+<h1>Pelagic Life Expedition Database</h1>
+ 	Plan your next expedition based on:
+ 	<%= link_to "Trips", "/trip" %> |
+	<%= link_to "Locations", "/location" %> |
+	<%= link_to "Seasons", "/month" %>
+<hr>
 <%= yield %>
-
+</div>
 </body>
 </html>

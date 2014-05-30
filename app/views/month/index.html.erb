@@ -1,0 +1,12 @@
+<h3>Seasons based on months of the year</h3>
+
+<% all_months = Month.read %>
+
+
+  <% all_months.each do |the_month| %>
+
+    <li>
+       <%= link_to the_month["title"] %>
+    </li>
+
+ 	<% end %>

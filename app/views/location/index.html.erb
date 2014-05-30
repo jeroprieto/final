@@ -1,0 +1,14 @@
+
+
+<h3>All Locations for Expeditions</h3>
+
+<% all_locations = Location.read %>
+
+
+  <% all_locations.each do |location| %>
+
+    <li>
+      <%= link_to location["title"], "/location/#{location["id"]}" %>
+    </li>
+
+ 	<% end %>

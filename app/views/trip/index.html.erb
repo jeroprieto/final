@@ -1,0 +1,27 @@
+<div class="row">
+
+  <div class="col-md-8">
+
+    <% Trip.read.order("title asc").each do |trip| %>
+
+      <div class="row trip">
+
+        <div class="col-md-4">
+          <%= link_to image_tag(trip["photo_url"]), "/trip/#{trip["id"]}" %>
+        </div>
+
+        <div class="col-md-8">
+          <h3>
+            <%= link_to trip["title"], "/trip/#{trip["id"]}" %>
+          </h3>
+          <p>Probability of Encounter: <%= trip["probability"] %>%</p>
+
+          <% operator = Operator.find_by("id" => trip["operator_id"]) %>
+          <% if operator.present? %>
+            <p>Operator: <%= operator["title"] %></p>
+          <% end %>
+        </div>
+
+      </div>
+    <% end %>
+  </div>

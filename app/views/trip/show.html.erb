@@ -1,0 +1,45 @@
+<% trip_id = params["id"] %>
+<% trip = Trip.read(trip_id) %>
+
+<div class="row">
+    <%= image_tag(trip["photo_url"]) %>
+</div>
+
+<div class="row">
+    <h1><%= trip["title"] %> </h1>
+    <h4>Probability of Encounter: <%= trip["probability"] %>%</h4><p>Based on Pelagic Life's previous expedition success rate. </p>
+</div>
+
+<div class="row">  
+	<h3> Season </h3>  
+    <p> Months where there exists probability of encounter: 
+    <% months = Season.where("trip_id" => trip["id"]) %>
+    	<% months.each do |the_month| %>
+	    	<% zebra = Month.find_by("id" => the_month["month_id"]) %>
+	    	<%= zebra["title"] %>,
+			<% end %>
+    </p>
+</div>
+
+<div class="row">  
+	<h3> Description </h3>  
+    <p> Location known as: <%= trip["description"] %> </p>
+</div>
+
+<div class="row">  
+	<h3> Location information </h3>  
+    <% location = Location.find_by("id" => trip["location_id"]) %>
+    <p> Location known as: <%= location["title"] %> </p>
+    <p> Nearest airport: <%= location["nearest_airport"] %> </p>
+    <p> Accomodations: <%= location["accomodation"] %> </p>
+</div>
+
+<div class="row">   
+    <h3> Recomended Operator </h3> 
+    <% operator = Operator.find_by("id" => trip["operator_id"]) %>
+    <p> Company name: <%= operator["title"] %> </p>
+    <p> Owner/contact: <%= operator["owner"] %> </p>
+    <p> <%= link_to "Contact them to check for rates and availability", operator["contact_url"] %> </p>
+
+</div>
+ 
