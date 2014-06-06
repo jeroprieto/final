@@ -3,6 +3,12 @@
 
 <div class="row">
     <%= image_tag(trip["photo_url"]) %>
+
+    <% avg = Review.where("trip_id" => trip["id"]).average(:rating).to_i %>
+    <h4>Avg Rating:
+      <% avg.times do %>
+        &star;
+      <% end %>
 </div>
 
 <div class="row">
@@ -14,9 +20,9 @@
 	<h3> Season </h3>  
     <p> Months where there exists probability of encounter: 
     <% months = Season.where("trip_id" => trip["id"]) %>
-    	<% months.each do |the_month| %>
-	    	<% zebra = Month.find_by("id" => the_month["month_id"]) %>
-	    	<%= zebra["title"] %>,
+    	<% months.each do |month| %>
+	    	<% the_month = Month.find_by("id" => month["month_id"]) %>
+	    	<%= link_to the_month["title"], "/months/#{the_month["id"]}" %>,
 			<% end %>
     </p>
 </div>
@@ -42,4 +48,39 @@
     <p> <%= link_to "Contact them to check for rates and availability", operator["contact_url"] %> </p>
 
 </div>
- 
+
+<h3>Traveler's Reviews</h3>
+
+<% if Review.where("trip_id" => trip["id"]).count == 0 %>
+  <p>Be the first to add a review!</p>
+<% end %>
+
+<%= form_tag "/reviews" do %>
+
+  <%= hidden_field_tag "trip_id", trip["id"] %>
+
+  <div class="form-group">
+    <%= label_tag :rating %>
+    <%= select_tag :rating, options_for_select(['5 stars','4 stars','3 stars','2 stars','1 star']) %>
+    <%= text_area_tag :content, "", "class" => "form-control", "placeholder" => "Tell us about your experience!", "rows" => 4 %>
+  </div>
+
+  <%= submit_tag "Add Review", "class" => "btn btn-md btn-primary" %>
+<% end %>
+
+<% Review.where("trip_id" => trip["id"]).each do |review| %>
+  <% the_user = User.find_by("id" => review["user_id"]) %>
+  <div class="review row">
+    <div class="col-md-3">
+      <p><%= review.rating %>/5 
+      <% if the_user.present? %>
+        by <%= the_user["name"] %></p>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <p><%= review.content %></p>
+    </div>
+  </div>
+<% end %>
+
+</div>

@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Vimeo video insert
+# gem 'vimeo', '~> 1.5.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
@@ -41,7 +43,8 @@ gem 'spring',        group: :development
 
 gem "quiet_assets", group: "development"
 gem "hirb", group: "development"
-gem "ez", group: "development"
+gem "ez"
+
 group :development, :test do
   gem "sqlite3"
 end
@@ -50,3 +53,4 @@ group :production do
   gem "pg"
   gem "rails_12factor"
 end
+	

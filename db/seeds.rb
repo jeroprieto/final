@@ -138,3 +138,15 @@ Season.create("trip_id" => sbb.id, "month_id" => feb.id)
 Season.create("trip_id" => sbb.id, "month_id" => mar.id)
 Season.create("trip_id" => gmc.id, "month_id" => sep.id)
 Season.create("trip_id" => gmc.id, "month_id" => oct.id)
+
+User.delete_all
+jero = User.create("username" => "jero", "password" => "pelagiclife", "name" => "Jero Prieto")
+lalo = User.create("username" => "lalo", "password" => "cecilia", "name" => "Eduardo Martinez")
+ana = User.create("username" => "ana", "password" => "germany", "name" => "Ana Lagos")
+
+Review.delete_all
+Review.create("user_id" => jero.id, "trip_id" => bms.id, "rating" => 5, "content" => "I love blue sharks!")
+Review.create("user_id" => jero.id, "trip_id" => gws.id, "rating" => 1, "content" => "Great encounter with LARGE SHARKS!")
+Review.create("user_id" => ana.id, "trip_id" => gws.id, "rating" => 2, "content" => "I really enjoyed the accomodations")
+Review.create("user_id" => ana.id, "trip_id" => bms.id , "rating" => 4, "content" => "I love going to Bahia Magdalena!")
+Review.create("user_id" => lalo.id, "trip_id" => gws.id, "rating" => 5, "content" => "Cageless diving with great white sharks is not allowed")

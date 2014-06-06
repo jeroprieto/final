@@ -1,0 +1,34 @@
+<% the_id = params["id"] %>
+<% the_month = Month.read(the_id) %>
+<% all_trips = Season.where("month_id" => the_month["id"]) %>
+
+<h3>All Expeditions in <%= the_month["title"] %> </h3>
+
+<div class="row">
+
+  <div class="col-md-8">
+   
+	<% all_trips.each do |trip| %>
+	<% the_trip = Trip.find_by("id" => trip["trip_id"]) %>
+	
+	<div class="row trip">
+
+		<div class="col-md-4">
+		  <%= link_to image_tag(the_trip["photo_url"]), "/trip/#{the_trip["id"]}" %>
+		</div>
+
+		<div class="col-md-8">
+		  <h3> <%= link_to the_trip["title"], "/trip/#{the_trip["id"]}" %> </h3>
+		  
+		  <p>Probability of Encounter: <%= the_trip["probability"] %>%</p>
+		  <% operator = Operator.find_by("id" => the_trip["operator_id"]) %>
+		  <% if operator.present? %>
+			<p>Operator: <%= operator["title"] %></p>
+
+	<% end %>
+
+		</div>
+
+	 </div>
+	<% end %>
+</div>

@@ -8,7 +8,7 @@
 
   <div class="col-md-8">
 
-    <% the_trips.each do |trip| %>
+    <% the_trips.order("id asc").each do |trip| %>
 
       <div class="row trip">
 

@@ -24,3 +24,13 @@ Season:
   - trip_id: integer
   - month_id: integer
 
+User:
+  - username: string
+  - password: string
+  - name: string
+
+Review:
+  - user_id: integer
+  - trip_id: integer
+  - rating: integer
+  - content: text

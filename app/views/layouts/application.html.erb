@@ -11,14 +11,39 @@
 
 </head>
 <body>
+	<div class="col-md-8 col-md-offset-2">
+		<h1>Pelagic Life Expedition Database</h1>
+ 		Plan your next expedition based on:
+ 		<%= link_to "Trips", "/trip" %> |
+		<%= link_to "Locations", "/location" %> |
+		<%= link_to "Seasons", "/months" %>
+  <div>	
+    <% user = User.find_by("id" => cookies["user_id"]) %>
+    <% if user.present? %>
+      <%= link_to "My Profile", "/users/#{user["id"]}" %> |
+      <%= link_to "Sign Out", '/logout' %> |
+      <%= user["name"] %>
+    <% else %>
+      <%= link_to "Sign Up", '/users/new' %> |
+      <%= link_to "Sign In", '/login' %>
+  </div>
+    <% end %>
+
+    <h4> <%= notice %> </h4>
+
+    <hr>
+
+    <%= yield %>
+
+  </div>
 <div class="col-md-8 col-md-offset-2">
-<h1>Pelagic Life Expedition Database</h1>
- 	Plan your next expedition based on:
- 	<%= link_to "Trips", "/trip" %> |
-	<%= link_to "Locations", "/location" %> |
-	<%= link_to "Seasons", "/month" %>
 <hr>
-<%= yield %>
+<h4>View other related websites</h4>
+ 	<%= link_to "Pelagiclife.org", "http://www.pelagiclife.org/" %> |
+	<%= link_to "Facebook", "https://www.facebook.com/pelagiclife?ref=bookmarks" %> |
+	<%= link_to "Twitter", "https://twitter.com/pelagiclife" %> |
+	<%= link_to "Instagram", "http://instagram.com/pelagic_life" %>
 </div>
 </body>
+
 </html>

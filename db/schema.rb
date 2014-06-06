@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528215425) do
+ActiveRecord::Schema.define(version: 20140603163411) do
 
   create_table "locations", force: true do |t|
     t.string "title"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 20140528215425) do
     t.string "contact_url"
   end
 
+  create_table "reviews", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "rating"
+    t.text     "content"
+    t.datetime "created_at"
+    t.integer  "trip_id"
+  end
+
   create_table "seasons", force: true do |t|
     t.integer "trip_id"
     t.integer "month_id"
@@ -42,6 +50,12 @@ ActiveRecord::Schema.define(version: 20140528215425) do
     t.integer "operator_id"
     t.integer "probability"
     t.string  "photo_url"
+  end
+
+  create_table "users", force: true do |t|
+    t.string "username"
+    t.string "password"
+    t.string "name"
   end
 
 end
