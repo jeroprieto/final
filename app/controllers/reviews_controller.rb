@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
 
   def create
-    Review.create("user_id" => params["user_id"],
+    Review.create("user_id" => params["cookies_id"],
     							"trip_id" => params["trip_id"],
                   "rating" => params["rating"],
                   "content" => params["content"])

@@ -49,6 +49,7 @@
 
 </div>
 
+<div class="row">  
 <h3>Traveler's Reviews</h3>
 
 <% if Review.where("trip_id" => trip["id"]).count == 0 %>
@@ -81,6 +82,7 @@
       <p><%= review.content %></p>
     </div>
   </div>
+
 <% end %>
 
 </div>
